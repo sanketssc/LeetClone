@@ -22,17 +22,17 @@ export async function POST(request) {
 
     }
     if(!email || !password) {
-        return new Response("All properties required", {status:400})
+        return new Response(JSON.stringify({message: "All properties required", status: 400}), {status:400})
     }
    
     const user = await userModel.findOne({email: email});
     console.log(user)
     if(user) {
-        return new Response("User Already Exists", {status: 409})
+        return new Response(JSON.stringify({message:"User Already Exists", status: 409}), {status: 409})
     }
     const newUser = await userModel.create({email, password})
     console.log(newUser)
-    return new Response("User Created", {status:201});
+    return new Response(JSON.stringify({message: "User Created", status: 201}), {status:201});
     
 
 }

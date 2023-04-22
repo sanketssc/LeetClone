@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 //   return true;
 // }
 
-
 const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -23,47 +22,46 @@ const Login = () => {
     //     console.log("invalid Email")
     //     return;
     // }
-    const user = await fetch("/api/login", {
+    const user = await fetch("/api/register", {
       method: "POST",
       body: JSON.stringify({email: email, password:password})
 
     })
-    console.log(user)
+    // console.log(user)
     const data = await user.json();
-    console.log(data);
-    setEmail("");
-    setPassword("");
-    if(user.status === 200) {
+    // console.log(data);
+    // setEmail("");
+    // setPassword("");
+    console.log(user.status)
+    if(user.status === 201) {
       router.push("/")
     }
   };
 
-  
-
   return (
     <div className="flex flex-col h-screen w-screen justify-center items-center">
       <form className="flex flex-col items-center max-w-screen-md w-4/5 justify-center space-y-6">
-      <h1 className="text-4xl font-semibold">Login</h1>
+        <h1 className="text-4xl font-semibold">Registration</h1>
         <input
-          className="focus:outline-none border  w-2/5 border-blue-300 focus:border-[1.5px] rounded px-2 py-1"
+          className="focus:outline-none w-2/5 border border-blue-300 focus:border-[1.5px] rounded px-2 py-1"
           type="email"
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          className="focus:outline-none border  w-2/5 border-blue-300 focus:border-[1.5px] rounded px-2 py-1"
+          className="focus:outline-none border w-2/5 border-blue-300 focus:border-[1.5px] rounded px-2 py-1"
           type="password"
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
-          className="border-blue-400 border  w-1/5 px-3 py-1.5 rounded-md"
+          className="border-blue-400 w-1/5 border px-3 py-1.5 rounded-md"
           type="submit"
           onClick={(e) => handlesubmit(e)}
         >
-          Login
+          Register
         </button>
       </form>
     </div>

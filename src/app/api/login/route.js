@@ -22,20 +22,20 @@ export async function POST(request) {
 
     }
     if(!email || !password) {
-        return new Response("All properties required", {status:400})
+        return new Response(JSON.stringify({message: "All properties required", status: 400}), {status:400})
     }
    
     const user = await userModel.findOne({email: email});
     console.log(user)
     if(!user) {
-        return new Response("Invalid Email", {status: 409})
+        return new Response(JSON.stringify({message:"Invalid Email", status: 409}), {status: 409})
     }
     const userPassword = user.password;
     if(userPassword !== password){
-        return new Response("Wrong password", {status: 409})
+        return new Response( JSON.stringify({message:"Wrong password", status:409}), {status: 409})
     }
     
-    return new Response(JSON.stringify({"status": 200, "login success": true}), {status:200, redirected:true});
+    return new Response(JSON.stringify({message:"Login Success",status: 200 }), {status:200, redirected:true});
     
 
 }
