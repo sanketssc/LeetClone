@@ -1,3 +1,20 @@
+## Deployment Details
+
+This project is deployed on [vercel](https://leet-clone.vercel.app/)  
+
+Database is not currently connected to project so Login and Register wont work
+
+routes available 
+
+`/register`
+`/login`
+`/problemset/all`
+`/problems/[problem-slug]`
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
